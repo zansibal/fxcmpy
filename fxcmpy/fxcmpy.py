@@ -2692,9 +2692,13 @@ class fxcmpy(object):
             else:
                 self.logger.debug('Update data without action:')
                 self.logger.debug(data)
-                pos = self.open_pos[trade_id]
-                for field in data:
-                    pos.__set_attribute__(field, data[field])
+                try:
+                    pos = self.open_pos[trade_id]
+                except KeyError as e:
+                    self.logger.info('Common KeyError for newly opened postion - continuing')
+                else:
+                    for field in data:
+                        pos.__set_attribute__(field, data[field])
 
         if 'OpenPosition' in self.add_callbacks:
             callbacks = self.add_callbacks['OpenPosition']
