@@ -2322,7 +2322,7 @@ class fxcmpy(object):
         else:
             visible = 'false'
 
-        if self.number_update_requests > 48:
+        if self.number_update_requests > 1048:
             msg = 'Max. number of update request reached, renewing connection.'
 
             self.logger.warning(msg)
